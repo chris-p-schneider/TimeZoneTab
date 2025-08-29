@@ -22,4 +22,9 @@ chrome.runtime.onMessage.addListener((message, sender) => {
       }
     );
   }
+  else if (message.action === 'open_extension_tab') {
+    chrome.tabs.create({
+      url: "./tab/tab.html"
+    });
+  }
 });

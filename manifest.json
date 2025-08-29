@@ -4,7 +4,7 @@
   "version": "1.0",
   "manifest_version": 3,
   "permissions": [
-    "sidePanel", "tabs"
+    "sidePanel", "tabs", "storage"
   ],
   "action": {
     "default_title": "Click to test action",
