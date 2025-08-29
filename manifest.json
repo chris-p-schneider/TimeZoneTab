@@ -4,10 +4,17 @@
   "version": "1.0",
   "manifest_version": 3,
   "permissions": [
-    "sidePanel"
+    "sidePanel", "tabs"
   ],
   "action": {
+    "default_title": "Click to test action",
     "default_popup": "./popup/popup.html",
     "default_icon": "./img/svg/extension.svg"
+  },
+  "side_panel": {
+    "default_path": "./sidepanel/sidepanel.html"
+  },
+  "background": {
+    "service_worker": "./js/worker.js"
   }
 }
