@@ -8,11 +8,11 @@
   ],
   "action": {
     "default_title": "Click to test action",
-    "default_popup": "./popup/popup.html",
+    "default_popup": "./ui/popup/popup.html",
     "default_icon": "./img/svg/extension.svg"
   },
   "side_panel": {
-    "default_path": "./sidepanel/sidepanel.html"
+    "default_path": "./ui/sidepanel/sidepanel.html"
   },
   "background": {
     "service_worker": "./js/worker.js"
