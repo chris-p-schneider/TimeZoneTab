@@ -1,6 +1,6 @@
 console.log('ExtensionTemplate: popup');
 
-function openSidebar() {
+function openSidepanel() {
     chrome.runtime.sendMessage({action: 'open_side_panel'});
     window.close();
 }
@@ -11,8 +11,8 @@ function openExtensionTab() {
 }
 
 addEventListener('load', () => {
-    const sidebarButton = document.querySelector('#sidebar-button');
+    const sidepanelButton = document.querySelector('#sidepanel-button');
     const newTabButton = document.querySelector('#new-tab-button');
-    sidebarButton.addEventListener('click', openSidebar);
+    sidepanelButton.addEventListener('click', openSidepanel);
     newTabButton.addEventListener('click', openExtensionTab);
 });

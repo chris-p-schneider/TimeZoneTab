@@ -16,22 +16,44 @@ body {
     padding: 0.5rem;
 }
 
+main, form {
+    display: flex;
+    flex-flow: column;
+    gap: 0.5rem;
+}
+
 h1, h2, h3, h4, h5, h6 {
     margin: 0 0 1rem 0;
+}
+
+p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+hr {
+    width: 100%;
+    border-color: #aaa;
+    margin: 2rem 0;
 }
 
 input, textarea, button {
     font-family: var(--font-family);
     background-color: black;
-    padding: .5rem 1rem;
+    padding: 0.5rem;
     color: white;
     cursor: pointer;
+    margin-bottom: 1rem;
+    border: 1px solid #333;
+    &:hover {
+        border-color: #666;
+    }
 }
 
 button {
-    border: 1px solid transparent;
     border-radius: calc(1rem / 7);
-    &:hover {
-        border-color: #333;
+    font-weight: 500;
+    &:active {
+        outline: 1.5px solid white;
     }
 }
