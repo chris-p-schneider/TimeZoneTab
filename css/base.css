@@ -1,0 +1,12 @@
+:root {
+    --bg-color: #222;
+    --font-color: white;
+
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    box-sizing: border-box;
+}
