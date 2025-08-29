@@ -6,11 +6,6 @@
 }
 
 body {
-    padding: 0.5rem;
     width: var(--popup-width);
     height: var(--popup-height);
-}
-
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
 }
