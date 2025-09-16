@@ -1,7 +1,7 @@
 :root {
-    --bg-color: #222;
-    --font-color: white;
-    --font-family: 'Roboto', sans-serif;
+    --bg-color: #0a0a0a;
+    --font-color: #dda61f;
+    --font-family: 'Roboto', monospace;
 
     background-color: var(--bg-color);
     color: var(--font-color);
