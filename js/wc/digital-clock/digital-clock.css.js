@@ -40,7 +40,7 @@ export const css = `
         }
 
         #date {
-            font-size: calc(1 * var(--base-unit));
+            font-size: calc(0.99 * var(--base-unit));
         }
     }
 
