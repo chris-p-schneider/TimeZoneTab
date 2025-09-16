@@ -12,11 +12,16 @@
     box-sizing: border-box;
 }
 
+html {
+    min-height: 100vh;
+}
+
 body {
     padding: 0.5rem;
 }
 
-main, form {
+main {
+    position: relative;
     display: flex;
     flex-flow: column;
     gap: 0.5rem;

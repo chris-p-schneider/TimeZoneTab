@@ -6,7 +6,7 @@ export default class DigitialClock extends HTMLElement {
         sr.innerHTML = `
             <style>
                 :host {
-                    --rem-scale: 1;
+                    --base-unit: 2rem;
                     display: flex;
                     flex-flow: column nowrap;
                     width: fit-content;
@@ -17,7 +17,7 @@ export default class DigitialClock extends HTMLElement {
                         justify-content: center;
                         align-items: center;
                         font-family: 'Consolas', monospace;
-                        font-size: calc(3rem * var(--rem-scale));
+                        font-size: calc(3 * var(--base-unit));
                         pre {
                             margin: 0;
                             display: inline-block;
@@ -31,8 +31,8 @@ export default class DigitialClock extends HTMLElement {
                     #date {
                         display: none;
                         text-align: center;
-                        font-size: calc(1rem * var(--rem-scale));
-                        margin: calc(0.5rem * var(--rem-scale)) 0;
+                        font-size: calc(1 * var(--base-unit));
+                        margin: calc(0.334 * var(--base-unit)) 0;
                     }
                 }
                 :host([show-seconds]) {
