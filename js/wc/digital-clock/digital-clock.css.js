@@ -14,7 +14,7 @@ export const css = `
             justify-content: center;
             align-items: center;
             font-family: 'Consolas', monospace;
-            font-size: calc(3 * var(--base-unit));
+            font-size: calc(5 * var(--base-unit));
 
             pre {
                 margin: 0;
@@ -32,7 +32,7 @@ export const css = `
         #city, #date {
             display: none;
             text-align: center;
-            margin: calc(0.334 * var(--base-unit)) 0;
+            margin: calc(0.25 * var(--base-unit)) 0;
         }
 
         #city {
@@ -50,6 +50,9 @@ export const css = `
 
     :host([show-seconds]) {
         #seconds { display: inline-block; }
+        time {
+            font-size: calc(3 * var(--base-unit));
+        }
     }
 
     :host([show-date]) {

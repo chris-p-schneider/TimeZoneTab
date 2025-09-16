@@ -1,5 +1,10 @@
 @import url("../../css/base.css");
 
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     position: absolute;
     inset: 0;
@@ -8,12 +13,13 @@ body {
 main {
     justify-content: center;
     align-items: center;
-    gap: 6.667%;
+    gap: 2.5%;
     height: 100%;
 }
 
 @media screen and (width > 1600px) {
     main {
         flex-flow: row nowrap;
+        gap: 5%;
     }
 }
