@@ -1,6 +1,6 @@
 {
-  "name": "NewTab",
-  "description": "Customized new tab for Chrome",
+  "name": "TimeZoneTab",
+  "description": "Customized new tab that displays clocks for different timezones.",
   "version": "1.0",
   "manifest_version": 3,
   "permissions": ["tabs"],
