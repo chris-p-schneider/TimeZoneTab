@@ -1,61 +1,19 @@
-export default class DigitialClock extends HTMLElement {
+import { html } from './digital-clock.html.js';
+
+export default class DigitalClock extends HTMLElement {
     constructor() {
         super();
-        this.#initialDate = new Date();
         const sr = this.attachShadow({mode: 'open'});
-        sr.innerHTML = `
-            <style>
-                :host {
-                    --base-unit: 2rem;
-                    display: flex;
-                    flex-flow: column nowrap;
-                    width: fit-content;
-                    margin: auto;
-                    time {
-                        display: flex;
-                        flex-flow: row nowrap;
-                        justify-content: center;
-                        align-items: center;
-                        font-family: 'Consolas', monospace;
-                        font-size: calc(3 * var(--base-unit));
-                        pre {
-                            margin: 0;
-                            display: inline-block;
-                        }
-                        #minutes::before, #seconds::before {
-                            display: inline-block;
-                            content: ":";
-                        }
-                        #seconds { display: none; }
-                    }
-                    #date {
-                        display: none;
-                        text-align: center;
-                        font-size: calc(1 * var(--base-unit));
-                        margin: calc(0.334 * var(--base-unit)) 0;
-                    }
-                }
-                :host([show-seconds]) {
-                    #seconds { display: inline-block; }
-                }
-                :host([show-date]) {
-                    #date { display: block; }
-                }
-            </style>
-            <time>
-                <pre id="hours">00</pre>
-                <pre id="minutes">00</pre>
-                <pre id="seconds">00</pre>
-            </time>
-            <span id="date"></span>
-        `;
+        sr.innerHTML = html;
         this.#tick = this.#_tick.bind(this);
     }
 
     // Date
-    #initialDate;
+    #initialDate = new Date();
+    #timeZone = 'UTC';
 
     // Elements
+    #city;
     #hours;
     #minutes;
     #seconds;
@@ -65,15 +23,21 @@ export default class DigitialClock extends HTMLElement {
     #tick;
 
     static get observedAttributes() {
-        return ['show-seconds', 'show-date'];
+        return ['city', 'show-seconds', 'show-date', 'timezone'];
     }
 
     attributeChangedCallback(attr, oldValue, newValue) {
-        // ...
+        if (attr === 'city' && newValue) {
+            this.#setCity(newValue);
+        }
+        else if (attr === 'timezone') {
+            this.#timeZone = newValue ? newValue : 'UTC';
+        }
     }
 
     connectedCallback() {
         this.#initElements();
+        this.#setCity(this.getAttribute('city'));
         this.#setDate();
         setInterval(this.#tick, 100);
     }
@@ -84,22 +48,36 @@ export default class DigitialClock extends HTMLElement {
 
     #initElements() {
         const sr = this.shadowRoot;
-        this.#hours = sr.querySelector('#hours');
+        this.#city    = sr.querySelector('#city');
+        this.#hours   = sr.querySelector('#hours');
         this.#minutes = sr.querySelector('#minutes');
         this.#seconds = sr.querySelector('#seconds');
-        this.#date = sr.querySelector('#date');
+        this.#date    = sr.querySelector('#date');
+    }
+
+    #setCity(city) {
+        if (this.#city) {
+            this.#city.textContent = city;
+        }
     }
 
     #setTime() {
-        const d = new Date();
-        this.#hours.textContent = d.getHours();
-        this.#minutes.textContent = d.getMinutes();
-        this.#seconds.textContent = String(d.getSeconds()).padStart(2, '0');
+        const dtf = new Intl.DateTimeFormat('en-US', {
+            timeZone: this.#timeZone,
+            hour: '2-digit',
+            hour12: false,
+            minute: '2-digit',
+            second: '2-digit',
+        }).formatToParts(new Date());
+
+        this.#hours.textContent   = dtf[0].value;
+        this.#minutes.textContent = dtf[2].value;
+        this.#seconds.textContent = dtf[4].value;
     }
 
     #setDate() {
         this.#date.textContent = new Intl.DateTimeFormat('en-US', {
-            timeZone: 'America/New_York',
+            timeZone: this.#timeZone,
             dateStyle: 'full',
         }).format(new Date());
     }
